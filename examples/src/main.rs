@@ -1,85 +1,85 @@
-rouille::rouille! {
-    externe cagette rouille;
+rooste::rooste! {
+    väline teek rooste;
 
-    utilisons std::collections::Dictionnaire comme Dico;
+    kasuta std::kollektsioonid::Paisktabel nagu Register;
 
-    convention CléValeur {
-        fonction écrire(&soi, clé: Chaîne, valeur: Chaîne);
-        fonction lire(&soi, clé: Chaîne) -> Résultat<PeutÊtre<&Chaîne>, Chaîne>;
+    omadus Nimistu {
+        funktsioon sisesta(&ise, võti: Sõne, väärtus: Sõne);
+        funktsioon väljasta(&ise, võti: Sõne) -> Tulemus<Võimalik<&Sõne>, Sõne>;
     }
 
-    statique mutable DICTIONNAIRE: PeutÊtre<Dico<Chaîne, Chaîne>> = Rien;
+    staatiline muutuv REGISTER: Võimalik<Register<Sõne, Sõne>> = Puudu;
 
-    structure Concrète;
-
-    réalisation CléValeur pour Concrète {
-        fonction écrire(&soi, clé: Chaîne, valeur: Chaîne) {
-            soit dico = dangereux {
-                DICTIONNAIRE.prendre_ou_insérer_avec(Défaut::défaut)
+    teostus dün Nimistu {
+        funktsioon kirjuta(&ise, võti: Sõne, väärtus: Sõne) {
+            on register = ebaturvaline {
+                REGISTER.võta_või_sisesta_koos(Vaikimisi::vaikimisi)
             };
-            dico.insérer(clé, valeur);
+
+            register.sisesta(võti, väärtus);
         }
-        fonction lire(&soi, clé: Chaîne) -> Résultat<PeutÊtre<&Chaîne>, Chaîne> {
-            si soit Quelque(dico) = dangereux { DICTIONNAIRE.en_réf() } {
-                Bien(dico.lire(&clé))
-            } sinon {
-                Arf("fetchez le dico".vers())
+
+        funktsioon väljasta(&ise, võti: Sõne) -> Tulemus<Võimalik<&Sõne>, Sõne> {
+            kui on Olemas(register) = ebaturvaline { REGISTER.viitena() } {
+                Okei(register.võta(&võti))
+            } muidu {
+                Viga("loo nimistu".muunda())
             }
         }
     }
 
-    public(cagette) fonction peut_etre(i: u32) -> PeutÊtre<Résultat<u32, Chaîne>> {
-        si i % 2 == 1 {
-            si i == 42 {
-                Quelque(Arf(Chaîne::depuis("merde")))
-            } sinon {
-                Quelque(Bien(33))
+    avalik(teek) funktsioon võib_olla(i: u32) -> Võimalik<Tulemus<u32, Sõne>> {
+        kui i % 2 == 1 {
+            kui i == 42 {
+                Olemas(Viga(Sõne::loo("jama")))
+            } muidu {
+                Olemas(Okei(33))
             }
-        } sinon {
-            Rien
+        } muidu {
+            Puudu
         }
     }
 
-    asynchrone fonction exemple() {
+    asünk funktsioon näide() {
     }
 
-    asynchrone fonction exemple2() {
-        exemple().attend;
+    asünk funktsioon näide2() {
+        näide().oota;
     }
 
-    fonction principale() {
-        soit mutable x = 31;
+    funktsioon peamine() {
+        on muutuv x = 31;
 
-        selon x {
+        sobita x {
             42 => {
-                affiche!("omelette du fromage")
+                trüki!("kiluvõileib")
             }
-            _ => affiche!("voila")
+            _ => trüki!("vaat nii")
         }
 
-        pour i de 0..10 {
-            soit val = boucle {
-                arrête i;
+        iga i olles 0..10 {
+            on väärtus = kordus {
+                katke i;
             };
 
-            tant que x < val {
+            kuni x < väärtus {
                 x += 1;
             }
 
-            x = si soit Quelque(resultat) = peut_etre(i) {
-                resultat.déballer()
-            } sinon {
+            x = kui on Olemas(tulemus) = võib_olla(i) {
+                tulemus.ava()
+            } muidu {
                 12
             };
         }
 
-        //secondaire();
+        // sekundaarne();
     }
 
-    #[légal(code_inaccessible)]
-    fonction secondaire() {
-        merde!("oh non"); // for the true French experience
-        calisse!("tabernacle"); // for friends speaking fr-ca
-        oups!("fetchez la vache"); // in SFW contexts
+    #[luba(kättesaamatu_kood)]
+    funktsioon sekundaarne() {
+        raisk!("oh ei"); // for the true Estonian experience
+        paanika!("see juhtus"); // for more polite contexts
+        ups!("siin läks pekki"); // in SFW contexts
     }
 }

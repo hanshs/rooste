@@ -1,97 +1,94 @@
-# rouille
+# Rooste
 
-![](https://github.com/bnjbvr/rouille/raw/principale/logo.jpeg)
+![](https://github.com/bnjbvr/rooste/raw/principale/logo.jpeg)
 
-Aren't you _le tired_ from writing Rust programs in English? Do you like saying
-"merde" a lot? Would you like to try something different, in an exotic and
-funny-sounding language? Would you want to bring some French touch to your
+Aren't you _vässu_ from writing Rust programs in English? Do you like saying
+"raisk" a lot? Would you like to try something different, in an exotic and
+funny-sounding language? Would you want to bring some Estonian touch to your
 programs?
 
-**rouille** (French for _Rust_) is here to save your day, as it allows you to
-write Rust programs in French, using French keywords, French function names,
-French idioms.
+**rooste** (Estonian for _Rust_) is here to save your day, as it allows you to
+write Rust programs in Estonian, using Estonian keywords, Estonian function names,
+Estonian idioms.
 
 This has been designed to be used as the official programming language to
-develop the future French sovereign operating system. 
+develop the future Estonian sovereign operating system.
 
-If you're from the French or any other governement with French as an official 
-language: I will be awaiting your donations on
-[liberapay](https://liberapay.com/bnjbvr/).
-
-You're from Quebec (or elsewhere) and don't feel at ease using only French words? 
+You're from Quebec (or elsewhere) and don't feel at ease using only Estonian words?
 
 Don't worry!
-French Rust is fully compatible with English-Rust, so you can mix both at your
+Estonian Rust is fully compatible with English-Rust, so you can mix both at your
 convenience.
 
-Here's an example of what can be achieved with Rouille:
+Here's an example of what can be achieved with Rooste:
 
-### trait and impl (aka convention et réalisation)
+### trait and impl (aka omadus ja teostus)
 
 ```rust
-rouille::rouille! {
-    utilisons std::collections::Dictionnaire comme Dico;
+rooste::rooste! {
+    väline teek rooste;
 
-    convention CléValeur {
-        fonction écrire(&soi, clé: Chaîne, valeur: Chaîne);
-        fonction lire(&soi, clé: Chaîne) -> PeutÊtre<&Chaîne>;
+    kasuta std::kollektsioonid::Paisktabel nagu Register;
+
+    omadus Nimistu {
+        funktsioon sisesta(&ise, võti: Sõne, väärtus: Sõne);
+        funktsioon väljasta(&ise, võti: Sõne) -> Tulemus<Võimalik<&Sõne>, Sõne>;
     }
 
-    statique mutable DICTIONNAIRE: PeutÊtre<Dico<Chaîne, Chaîne>> = Rien;
+    staatiline muutuv REGISTER: Võimalik<Register<Sõne, Sõne>> = Puudu;
 
-    structure Concrète;
-
-    réalisation CléValeur pour Concrète {
-        fonction écrire(&soi, clé: Chaîne, valeur: Chaîne) {
-            soit dico = dangereux {
-                DICTIONNAIRE.prendre_ou_insérer_avec(Défaut::défaut)
+    teostus dün Nimistu {
+        funktsioon kirjuta(&ise, võti: Sõne, väärtus: Sõne) {
+            on register = ebaturvaline {
+                REGISTER.võta_või_sisesta_koos(Vaikimisi::vaikimisi)
             };
-            dico.insérer(clé, valeur);
+
+            register.sisesta(võti, väärtus);
         }
-        fonction lire(&soi, clé: Chaîne) -> Résultat<PeutÊtre<&Chaîne>, Chaîne> {
-            si soit Quelque(dico) = dangereux { DICTIONNAIRE.en_réf() } {
-                Bien(dico.lire(&clé))
-            } sinon {
-                Arf("fetchez le dico".vers())
+
+        funktsioon väljasta(&ise, võti: Sõne) -> Tulemus<Võimalik<&Sõne>, Sõne> {
+            kui on Olemas(register) = ebaturvaline { REGISTER.viitena() } {
+                Okei(register.võta(&võti))
+            } muidu {
+                Viga("loo nimistu".muunda())
             }
         }
     }
 }
 ```
 
-### Support for regional languages
+### Support for various contexts
 
 ```rust
-#[légal(code_inaccessible)]
-fonction secondaire() {
-    merde!("oh non"); // for the true French experience
-    calisse!("tabarnak"); // for friends speaking fr-ca
-    oups!("fetchez la vache"); // in SFW contexts
+#[luba(kättesaamatu_kood)]
+funktsioon sekundaarne() {
+    raisk!("oh ei"); // for the true Estonian experience
+    paanika!("see juhtus"); // for more polite contexts
+    ups!("siin läks pekki"); // in SFW contexts
 }
 ```
 
 ### Other examples
 
 See the [examples](./examples/src/main.rs) to get a rough sense of the whole
-syntax. Voilà, that's it.
+syntax. _Vot nii_, that's it.
 
 ## les contributions
 
-First of all, _merci beaucoup_ for considering participating to this joke, the
-French government will thank you later! Feel free to throw in a few identifiers
-here and there, and open a pull-request against the `principale` (French for
+First of all, _tänks_ for considering participating to this joke, the
+Estonian government will thank you later! Feel free to throw in a few identifiers
+here and there, and open a pull-request against the `peamine` (Estonian for
 `main`) branch.
 
-Please don't introduce swear words, though: we will not excuse your French.
+Please don't introduce swear words, though: we will not excuse your Estonian.
 
-## but why would you do zat
+## but why
 
 - horsin around
 - playing with raw proc macros
 - making a bit of fun about programming languages that do this seriously,
   though I can see their utility.
-- winking at [Marcel](https://github.com/brouberol/marcel)
-- c'est chic
+- sa igatsed seda eestikeelset progemist mida viimati nähti tehnika_ylikoolis()?
 
 ## Other languages
 
@@ -133,12 +130,5 @@ Please don't introduce swear words, though: we will not excuse your French.
 - Norwegian: [korrosjon](https://github.com/datagutt/korrosjon)
 - All of the above: [unirust](https://github.com/charyan/unirust)
 
-## un grand merci
-
-- [@VentGrey](https://twitter.com/VentGrey) for making a logo!
-
-## la license
-
-[License Publique Rien à Branler](http://sam.zoy.org/lprab/),
-_le_ official translation of the [WTFPL](http://www.wtfpl.net/)
-by the same author.
+## TODO
+- [ ] More Estonian Logo
